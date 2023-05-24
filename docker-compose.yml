@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+        java-docker-1:
+                build: docker/.
+                ports:
+                        - "8080:8080"
+                volumes:
+                        - ./release/persistent:/opt/persistent
+                # networks:
+                #         static-network:
+                #                 ipv4_address: 172.50.0.10       
+        java-docker-2:
+                build: docker/.
+                ports:
+                        - "8081:8080"
+                volumes:
+                        - ./release/persistent:/opt/persistent
+                # networks:
+                #         static-network:
+                #                 ipv4_address: 172.50.0.11
+# networks:
+#         static-network:
+#                 ipam:
+#                         config:
+#                                 - subnet: 172.50.0.0/24
