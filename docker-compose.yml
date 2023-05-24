@@ -5,7 +5,7 @@ services:
                 ports:
                         - "8080:8080"
                 volumes:
-                        - ./release/persistent:/opt/persistent
+                        - ./data:/opt/data
                 # networks:
                 #         static-network:
                 #                 ipv4_address: 172.50.0.10       
@@ -14,7 +14,7 @@ services:
                 ports:
                         - "8081:8080"
                 volumes:
-                        - ./release/persistent:/opt/persistent
+                        - ./data:/opt/data
                 # networks:
                 #         static-network:
                 #                 ipv4_address: 172.50.0.11
