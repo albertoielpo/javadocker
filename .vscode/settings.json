@@ -1,0 +1,37 @@
+{
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "java.compile.nullAnalysis.mode": "disabled",
+    "editor.defaultFormatter": "redhat.java",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms512m -Xlog:disable",
+    "gradle.nestedProjects": true,
+    "java.jdt.ls.java.home": "/home/alberto/dev/sw/jdk-17.0.5",
+    "maptz.regionfolder": {
+        "[http]": {
+            "foldEnd": "# /* #endregion */",
+            "foldEndRegex": "# /\\*[\\s]*#endregion",
+            "foldStart": "# /* #region [NAME] */",
+            "foldStartRegex": "^# [\\s]*/\\*[\\s]*#region[\\s]*(.*)[\\s]*\\*/[\\s]*$",
+            "defaultFoldStartRegex": "^[\\s]*/\\*[\\s]*#region[\\s]*default\\s(.*)[\\s]*\\*/[\\s]*$",
+            "foldDefinitions": [
+                {
+                    "foldEndRegex": "\\*+/[\\s]*$",
+                    "foldStartRegex": "^[\\s]*/\\*\\*+",
+                    "isFoldedByDefault": true
+                }
+            ]
+        }
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    }
+}
