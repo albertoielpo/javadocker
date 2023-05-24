@@ -6,6 +6,8 @@ services:
                         - "8080:8080"
                 volumes:
                         - ./data:/opt/data
+                environment:
+                        - JAVA_DOCKER_REMOTE_URI=http://java-docker-2:8080
                 # networks:
                 #         static-network:
                 #                 ipv4_address: 172.50.0.10       
@@ -15,6 +17,8 @@ services:
                         - "8081:8080"
                 volumes:
                         - ./data:/opt/data
+                environment:
+                        - JAVA_DOCKER_REMOTE_URI=http://java-docker-1:8080
                 # networks:
                 #         static-network:
                 #                 ipv4_address: 172.50.0.11

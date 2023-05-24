@@ -6,5 +6,7 @@ RUN mkdir -p /opt/javadocker
 COPY javadocker.jar /opt/javadocker/javadocker.jar
 WORKDIR /opt/javadocker
 EXPOSE 8080
+# Setting a common environment variable
+# ENV COMMON_ENV_VAR=PIPPO
 # STEP 3 - Start command
 ENTRYPOINT java -jar javadocker.jar

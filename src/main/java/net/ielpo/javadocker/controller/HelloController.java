@@ -10,6 +10,7 @@ import java.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,10 @@ import net.ielpo.javadocker.model.Version;
 @RestController
 public class HelloController {
 
-    // private static String remoteUrl = "http://172.50.0.10:8080/home";
-    private static String remoteUrl = "http://java-docker-1:8080/home";
+    @Value("${JAVA_DOCKER_REMOTE_URI:http://localhost:8080}")
+    private String javaDockerRemoteUri;
+
+    private static String remoteEndpoint = "/home";
 
     private Logger logger = LoggerFactory.getLogger(HelloController.class);
 
@@ -45,7 +48,8 @@ public class HelloController {
     @GetMapping("/remote")
     public ResponseEntity<Version> getRemote() throws Exception {
         logger.info("Remote called...");
-        Builder builder = HttpRequest.newBuilder().uri(new URI(remoteUrl))
+        Builder builder = HttpRequest.newBuilder()
+                .uri(new URI(String.format("%s%s", javaDockerRemoteUri, remoteEndpoint)))
                 .timeout(Duration.ofSeconds(30));
 
         HttpRequest request = builder.GET().build();
