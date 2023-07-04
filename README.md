@@ -8,6 +8,9 @@ Docker version 20.10
 ```
 ./gradlew clean
 ./gradlew build
+```
+## Local startup
+```
 ./gradlew bootRun
 ```
 ## Release
