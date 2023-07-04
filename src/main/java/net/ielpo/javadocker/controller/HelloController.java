@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,8 +57,10 @@ public class HelloController {
                 .timeout(Duration.ofSeconds(30))
                 .GET().build();
 
-        /* send sync ... */
+        /* send sync and check the response status code... */
         HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
+        Assert.isTrue(response.statusCode() == 200, "Status code must be 200");
+
         return new ResponseEntity<Version>(objectMapper.readValue(response.body(), Version.class), HttpStatus.OK);
     }
 
