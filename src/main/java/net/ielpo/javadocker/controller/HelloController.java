@@ -3,7 +3,6 @@ package net.ielpo.javadocker.controller;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
@@ -39,6 +38,9 @@ public class HelloController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private HttpClient httpClient;
+
     @GetMapping("/home")
     public ResponseEntity<Version> getHome() {
         logger.info("Home called...");
@@ -48,19 +50,15 @@ public class HelloController {
     @GetMapping("/remote")
     public ResponseEntity<Version> getRemote() throws Exception {
         logger.info("Remote called...");
-        Builder builder = HttpRequest.newBuilder()
+
+        HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(String.format("%s%s", javaDockerRemoteUri, remoteEndpoint)))
-                .timeout(Duration.ofSeconds(30));
+                .timeout(Duration.ofSeconds(30))
+                .GET().build();
 
-        HttpRequest request = builder.GET().build();
-
-        HttpResponse<byte[]> response = HttpClient.newBuilder()
-                .followRedirects(HttpClient.Redirect.ALWAYS)
-                .build()
-                .send(request, HttpResponse.BodyHandlers.ofByteArray());
-
+        /* send sync ... */
+        HttpResponse<byte[]> response = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
         return new ResponseEntity<Version>(objectMapper.readValue(response.body(), Version.class), HttpStatus.OK);
-
     }
 
 }

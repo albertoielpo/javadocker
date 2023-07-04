@@ -1,5 +1,6 @@
 package net.ielpo.javadocker.config;
 
+import java.net.http.HttpClient;
 import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
@@ -31,5 +32,10 @@ public class CommonBean {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return mapper;
+    }
+
+    @Bean
+    public HttpClient getHttpClient() {
+        return HttpClient.newHttpClient();
     }
 }
