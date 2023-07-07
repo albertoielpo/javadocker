@@ -3,8 +3,12 @@
 #
 ###
 GET {{baseUrl}}/home
+Accept: application/json
+Content-Type: application/json
 
 ###
 #
 ###
 GET {{baseUrl}}/remote
+Accept: application/json
+Content-Type: application/json
