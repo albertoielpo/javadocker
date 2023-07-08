@@ -28,3 +28,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// debug remote to port 38083
+bootRun {
+    jvmArgs=["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=38083"]
+    args = []
+}
